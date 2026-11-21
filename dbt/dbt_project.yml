@@ -1,0 +1,22 @@
+[dbt]
+name = distribplus
+version = 0.1.0
+profile = distribplus
+
+model-paths = ["models"]
+seed-paths = ["seeds"]
+test-paths = ["tests"]
+target-path = "target"
+clean-targets = ["target", "dbt_packages"]
+
+models:
+  distribplus:
+    staging:
+      +schema: staging
+      +materialized: view
+    ref_layer:
+      +schema: ref
+      +materialized: table
+    marts:
+      +schema: dwh
+      +materialized: table

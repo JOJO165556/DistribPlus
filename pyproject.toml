@@ -1,0 +1,40 @@
+[project]
+name = "distribplus-pipeline"
+version = "0.1.0"
+description = "Pipeline de données BI — DistribPlus MVP"
+requires-python = ">=3.11"
+
+dependencies = [
+    "pandas>=2.2",
+    "psycopg[binary]>=3.1",
+    "pandera>=0.20",
+    "python-dotenv>=1.0",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "structlog>=24.0",
+    "faker>=25.0",        # générateur de données
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short -q"
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
