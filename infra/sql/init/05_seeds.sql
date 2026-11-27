@@ -3,25 +3,25 @@
 -- Données initiales indispensables (canaux, entrepôts, client inconnu, calendrier)
 -- ==============================================================================
 
--- 1. Canaux de vente
+-- Canaux de vente
 INSERT INTO dwh.dim_canal (canal_sk, code, libelle) VALUES
     (1, 'caisse', 'Vente physique comptoir / caisse'),
     (2, 'b2b', 'Portail B2B en ligne')
 ON CONFLICT (canal_sk) DO NOTHING;
 
--- 2. Entrepôts
+-- Entrepots
 INSERT INTO dwh.dim_entrepot (entrepot_sk, entrepot_id, libelle, localisation) VALUES
-    (1, 'ENT-01', 'Entrepôt Principal DistribPlus', 'Dépôt Central')
+    (1, 'ENT-01', 'Entrepôt Principal', 'Dépôt Central')
 ON CONFLICT (entrepot_sk) DO NOTHING;
 
--- 3. Client Inconnu (client_sk = -1 pour les ventes comptoir sans compte client - RG-02/RG-04)
+-- Client Inconnu (client_sk = -1 pour les ventes comptoir sans compte client - RG-02/RG-04)
 -- On autorise l'insertion manuelle de l'ID -1
 INSERT INTO dwh.dim_client (client_sk, client_id, raison_sociale, categorie_client, date_debut, date_fin, est_courant)
 VALUES
     (-1, 'INCONNU', 'Client comptoir / non renseigné', 'COMPTOIR', '2000-01-01', NULL, true)
 ON CONFLICT (client_sk) DO NOTHING;
 
--- 4. Génération de dim_temps sur 2024 - 2026
+-- Generation de dim_temps sur 2024 - 2026
 INSERT INTO dwh.dim_temps (
     date_sk,
     date_jour,

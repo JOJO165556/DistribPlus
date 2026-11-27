@@ -1,5 +1,5 @@
 """
-Configuration globale du pipeline DistribPlus.
+Configuration globale du pipeline.
 Charge les variables d'environnement de manière type-safe.
 """
 from pathlib import Path
@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
     # Base de données PostgreSQL
     postgres_host: str = Field(default="localhost", alias="POSTGRES_HOST")
-    postgres_port: int = Field(default=5432, alias="POSTGRES_PORT")
+    postgres_port: int = Field(default=5436, alias="POSTGRES_PORT")
     postgres_db: str = Field(default="distribplus", alias="POSTGRES_DB")
     postgres_user: str = Field(default="distribplus", alias="POSTGRES_USER")
     postgres_password: str = Field(default="changeme", alias="POSTGRES_PASSWORD")
